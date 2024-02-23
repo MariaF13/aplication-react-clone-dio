@@ -1,4 +1,4 @@
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MdEmail, MdLock } from 'react-icons/md';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
@@ -8,32 +8,33 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'; 
 import * as yup from 'yup'; 
 
-import { Container, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
+import { Container, Title, Column, TitleCreate, SubtitleCreate, EsqueciText, CriarText, Row, Wrapper } from './styles';
 
 const schema = yup.object().shape({
   email: yup.string().email('E-mail inválido').required('E-mail é obrigatório'),
-  senha: yup.string().min(3, 'Minimo de 3 caracteres').required('Senha é obrigatória'),
+  senha: yup.string().min(3, 'Mínimo de 3 caracteres').required('Senha é obrigatória'),
+  confirmarSenha: yup.string().oneOf([yup.ref('senha'), null], 'As senhas devem ser iguais').required('Confirmação de senha é obrigatória'),
 });
 
-const Login = () => {
+const Create = () => {
     const navigate = useNavigate();
 
     const { control, handleSubmit, formState: { errors  } } = useForm({
-        resolver: yupResolver(schema), // Use yupResolver with schema
+        resolver: yupResolver(schema),
         reValidateMode: 'onChange',
         mode: 'onChange',
     });
 
     const onSubmit = async (formData) => {
         try {
-            const {data} = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
+            const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
             
-            if(data.length && data[0].id) {
+            if (data.length && data[0].id) {
                 navigate('/feed'); 
             } else {
                 alert('Usuário ou senha inválido');
             }
-        } catch(e) {
+        } catch (e) {
             console.error('HOUVE UM ERRO', e);
         }
     };
@@ -47,13 +48,15 @@ const Login = () => {
                 </Column>
                 <Column>
                     <Wrapper>
-                        <TitleLogin>Faça seu cadastro</TitleLogin>
-                        <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+                        <TitleCreate>Faça seu cadastro</TitleCreate>
+                        <SubtitleCreate>Faça seu Create e make the change._</SubtitleCreate>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                                <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email"  control={control} />
-                                    {errors.email && <span>E-mail é obrigatório</span>}
-                                <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
-                                    {errors.senha && <span>Senha é obrigatório</span>}
+                            <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email" control={control} />
+                            {errors.email && <span>{errors.email.message}</span>}
+                            <Input type="password" placeholder="Senha" leftIcon={<MdLock />} name="senha" control={control} />
+                            {errors.senha && <span>{errors.senha.message}</span>}
+                            <Input type="password" placeholder="Confirmar Senha" leftIcon={<MdLock />} name="confirmarSenha" control={control} />
+                            {errors.confirmarSenha && <span>{errors.confirmarSenha.message}</span>}
                             <Button title="Entrar" variant="secondary" type="submit"/>
                         </form>
                         <Row>
@@ -67,4 +70,4 @@ const Login = () => {
     );
 };
 
-export { Login };
+export { Create };
