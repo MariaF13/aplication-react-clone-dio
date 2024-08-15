@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/aplication-react-clone-dio/static/js/main.7c02b27f.js",
-    "static/media/banner.png": "/aplication-react-clone-dio/static/media/banner.9ab4ead1c68ede88f1ce.png",
-    "index.html": "/aplication-react-clone-dio/index.html",
-    "main.7c02b27f.js.map": "/aplication-react-clone-dio/static/js/main.7c02b27f.js.map"
+    "main.js": "/clone-dio/static/js/main.357ae2ad.js",
+    "static/media/banner.png": "/clone-dio/static/media/banner.9ab4ead1c68ede88f1ce.png",
+    "index.html": "/clone-dio/index.html",
+    "main.357ae2ad.js.map": "/clone-dio/static/js/main.357ae2ad.js.map"
   },
   "entrypoints": [
-    "static/js/main.7c02b27f.js"
+    "static/js/main.357ae2ad.js"
   ]
 }
