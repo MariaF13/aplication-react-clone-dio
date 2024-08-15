@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/aplication-react-clone-dio/static/js/main.7c02b27f.js",
+    "static/media/banner.png": "/aplication-react-clone-dio/static/media/banner.9ab4ead1c68ede88f1ce.png",
+    "index.html": "/aplication-react-clone-dio/index.html",
+    "main.7c02b27f.js.map": "/aplication-react-clone-dio/static/js/main.7c02b27f.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.7c02b27f.js"
+  ]
+}
